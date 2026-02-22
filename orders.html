@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Orders</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>My Orders</h2>
+<div id="orders"></div>
+
+<script>
+let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+let html="";
+orders.forEach(o=>{
+  html+=`
+    <div class="card">
+      <p>Total: ₹${o.total}</p>
+      <p>Date: ${o.date}</p>
+    </div>
+  `;
+});
+
+document.getElementById("orders").innerHTML = html;
+</script>
+
+</body>
+</html>

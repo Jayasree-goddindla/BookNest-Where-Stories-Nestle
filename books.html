@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Books</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Available Books</h2>
+<div id="books"></div>
+<button onclick="goToCart()">Go To Cart</button>
+
+<script>
+// 📚 BOOK DATA (FRONTEND ONLY)
+let booksData = [
+  {id:1, title:"Harry Potter", author:"J.K Rowling", genre:"Fantasy", price:450},
+  {id:2, title:"Atomic Habits", author:"James Clear", genre:"Self Help", price:300},
+  {id:3, title:"The Alchemist", author:"Paulo Coelho", genre:"Fiction", price:280},
+  {id:4, title:"Rich Dad Poor Dad", author:"Robert Kiyosaki", genre:"Finance", price:350},
+  {id:5, title:"Wings of Fire", author:"A.P.J Abdul Kalam", genre:"Biography", price:400}
+];
+
+let cart = [];
+
+let html="";
+booksData.forEach(b=>{
+  html+=`
+    <div class="card">
+      <h3>${b.title}</h3>
+      <p>Author: ${b.author}</p>
+      <p>Genre: ${b.genre}</p>
+      <p>₹${b.price}</p>
+      <button onclick='addToCart(${JSON.stringify(b)})'>Add to Cart</button>
+    </div>
+  `;
+});
+document.getElementById("books").innerHTML = html;
+
+function addToCart(book){
+  cart.push(book);
+  alert("Added to cart");
+}
+
+function goToCart(){
+  localStorage.setItem("cart", JSON.stringify(cart));
+  window.location = "cart.html";
+}
+</script>
+
+</body>
+</html>
